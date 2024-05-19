@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<br><br><br><br><br><br>
+    <h1>Search Results for "{{ query }}"</h1>
+    <a href="{% url 'home'  %}">🔙Back to home</a>
+    <h2>Products</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'product_details' product.id %}">{{ product.name }}</a> - {{ product.description }}
+            </li>
+        {% empty %}
+            <li>No products found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Rents</h2>
+    <ul>
+        {% for rent in rents %}
+            <li>
+                <a href="{% url 'rent_details' rent.id %}">{{ rent.name }}</a> - {{ rent.description }}
+            </li>
+        {% empty %}
+            <li>No rents found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tutoring Services</h2>
+    <ul>
+        {% for tutoring in tutorings %}
+            <li>
+                <a href="{% url 'tutoring_details' tutoring.id %}">{{ tutoring.name }}</a> - {{ tutoring.description }}
+            </li>
+        {% empty %}
+            <li>No tutoring services found.</li>
+        {% endfor %}
+    </ul>
+    {% endblock  %}
+    

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br><br>
+<div class="container">
+  <h1 class="text-center">Product Details</h1>
+  <a href="{% url 'home'  %}">🔙Back to home</a>
+  <div class="row">
+      <div class="col-md-7">
+          
+          <div class="row">
+              <div class="col-6 col-sm-6 col-md-6"><img class="img-thumbnail img-fluid center-block" src="{{product.image1.url}}"></div>
+              <div class="col-6 col-sm-6 col-md-6"><img class="img-thumbnail img-fluid center-block" src="{{product.image2.url}}"></div>
+          </div>
+      </div>
+      <div class="col-md-5">
+        <h1>{{ product.name }}</h1>
+          <p style="color: blue;">{{ product.description }}</p>
+          <h4 style="color:black">Price: {{ product.price }} per {{ product.price_type }}</h4>
+         <a href="{{product.phone_number}}" ><button class="btn btn-danger btn-lg center-block" type="button"><i class="fa fa-cart-plus"></i>Call 📞</button></div></a>
+          <p>Posted by: <a href="{% url 'profile' product.user.id %}">{{ product.user.username }}</a></p>
+
+<h2>Comments</h2>
+<ul>
+  {% for comment in product.comments.all %}
+  <h3>{{ comment.user.username }}</h3><li style="color: blue;">{{ comment.text }} </li>
+    
+  {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'add_product_comment' product.id %}">
+  {% csrf_token %}
+  <textarea name="text"></textarea>
+  <button type="submit">Add Comment</button>
+</form>
+  </div>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br><br>
+<a href="{% url 'home'  %}">🔙Back to home</a>
+<h1 style="color:black">{{ user_profile.user.name }}s' Profile</h1>
+<div class="profile-card">
+    <a href="{% url 'home' %}" style="color:black">Back to Home</a>
+
+    <div class="profile-back"></div><img class="rounded-circle profile-pic" src="{{ user_profile.profile_picture.url }}">
+    <h3 class="profile-name" style="color:black">{{ user_profile.full_name }}</h3>
+    <p class="profile-bio" style="color:black"><pstyle="color:black">Address: {{ user_profile.address }}</p>
+    <p style="color:blue">Phone Number: {{ user_profile.phone_number }}</p>
+    
+</div>
+{% endblock %}
